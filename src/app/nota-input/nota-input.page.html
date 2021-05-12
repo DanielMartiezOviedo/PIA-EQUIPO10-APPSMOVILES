@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color= "primary">
+  <ion-buttons slot= "start">
+  <ion-back-button defaultHref="/notas"></ion-back-button>
+  </ion-buttons>
+  <ion-title>Agregar nueva nota</ion-title>
+    </ion-toolbar>
+ </ion-header>
+<ion-content>
+ <form [formGroup]= "datosForm" (ngSubmit)="ingresarDatos(datosForm.value)">
+ <ion-item>
+   <ion-label position="floating">Titulo</ion-label>
+   <ion-input formControlName="titulo" placeholder="Examen de Probabilidad"></ion-input>
+ </ion-item>
+ <div class="errors">
+   <ng-container *ngFor="let validation of mensajesValidacion.datos">
+     <div *ngIf="
+     datosForm.get('titulo').hasError(validation.type) &&
+     (datosForm.get('titulo').dirty || datosForm.get('titulo').touched)
+     ">
+       {{ validation.message }}
+     </div>
+   </ng-container>
+ </div>
+ <ion-item>
+   <ion-label position="floating">Descripcion</ion-label>
+   <ion-input formControlName="descripcion" placeholder="Estudiar apuntes"></ion-input>
+ </ion-item>
+ <div class="errors">
+   <ng-container *ngFor="let validation of mensajesValidacion.datos">
+     <div *ngIf="
+     datosForm.get('descripcion').hasError(validation.type) &&
+     (datosForm.get('descripcion').dirty || datosForm.get('descripcion').touched) ">
+       {{ validation.message }}
+     </div>
+   </ng-container>
+ </div>
+
+ <ion-button expand="block" [disabled]="datosForm.valid" type="submit" routerLink="/notas">Ingresar</ion-button>
+</form>
+
+</ion-content>
