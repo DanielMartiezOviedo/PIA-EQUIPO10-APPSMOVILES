@@ -34,15 +34,14 @@
   {{isLoginMode ? 'Registrarse' : 'Ir a Inicio'}}
   </ion-button>
    <ion-spinner color= "primary" *ngIf="isLoading"></ion-spinner>
-  <ion-button
-  color= "primary"
-  expand="block"
-  *ngIf="!isLoading"
-  (click)= "onLogin()"
-  [disabled]="!myForm.valid">
-  {{!isLoginMode ? 'Guardar' : 'Entrar'}}
+   <ion-button
+   color=  "primary"
+   expand="block"
+   *ngIf= "!isLoading"
+   type=  "submit"
+   [disabled]= "!myForm.valid">
+   {{!isLoginMode ? 'Guardar' : 'Entrar'}}
   </ion-button>
-
   </ion-col>
   </ion-row>
   </ion-grid>

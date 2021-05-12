@@ -1,22 +1,28 @@
+/* eslint-disable @typescript-eslint/semi */
 import { LoginService } from './login.service';
 import { Injectable } from '@angular/core';
-import { CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router  } from '@angular/router';
+import { CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router'
 import { Observable } from 'rxjs';
-
+import { take, tap } from 'rxjs/operators';
 @Injectable({
-  providedIn: 'root'
+ providedIn: 'root'
 })
 export class LoginGuard implements CanLoad {
-  constructor(
-    private loginService: LoginService,
-   private router: Router,
-  ){}
-
-  canLoad(route: Route,
-    segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(!this.loginService.usuarioLoggedo){
-    this.router.navigateByUrl('/inicio');
-    }
-    return this.loginService.usuarioLoggedo;
-    }
+ constructor(
+ private loginService: LoginService,
+ private router: Router
+ ){}
+ canLoad(
+ route: Route,
+ segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+ return this.loginService.usuarioLoggeado.pipe(
+ take(1),
+ tap(isAuth => {
+ console.log(this.loginService.usuarioLoggeado);
+ if(!this.loginService.usuarioLoggeado){
+ this.router.navigateByUrl('/log-in');
+ }
+ })
+ );
+ }
 }
