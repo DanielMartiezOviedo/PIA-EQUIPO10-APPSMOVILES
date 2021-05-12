@@ -1,0 +1,7 @@
+{
+  "name": "Equipo10",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
