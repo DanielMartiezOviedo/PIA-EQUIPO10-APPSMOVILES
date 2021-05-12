@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ViewMessagePage } from './view-message.page';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CalendarioPageRoutingModule } from './calendario-routing.module';
-
-import { CalendarioPage } from './calendario.page';
+import { ViewMessagePageRoutingModule } from './view-message-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CalendarioPageRoutingModule
+    ViewMessagePageRoutingModule
   ],
-  declarations: [CalendarioPage]
+  declarations: [ViewMessagePage]
 })
-export class CalendarioPageModule {}
+export class ViewMessagePageModule {}

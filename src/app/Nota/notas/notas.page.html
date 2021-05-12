@@ -5,6 +5,9 @@
       <ion-button routerLink="/nota-input">
         <ion-icon name="add" slot="icon-only"></ion-icon>
     </ion-button>
+    <ion-button routerLink="/fotos-nota">
+      <ion-icon name="camera" slot="icon-only"></ion-icon>
+  </ion-button>
     </ion-buttons>
   </ion-toolbar>
 
@@ -17,7 +20,7 @@
 
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Pendientes</ion-title>
+      <ion-title size="large">Notas</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-list *ngFor="let message of getMessages(); let i = index">

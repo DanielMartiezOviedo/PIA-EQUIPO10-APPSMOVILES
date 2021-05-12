@@ -1,3 +1,4 @@
+/* eslint-disable eol-last */
 import { Component, OnInit } from '@angular/core';
 import { DataService, Message } from '../services/data.service';
 @Component({

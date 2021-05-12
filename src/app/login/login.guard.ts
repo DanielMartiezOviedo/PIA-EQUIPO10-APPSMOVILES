@@ -17,8 +17,7 @@ export class LoginGuard implements CanLoad {
  segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
  return this.loginService.usuarioLoggeado.pipe(
  take(1),
- tap(isAuth => {
- console.log(this.loginService.usuarioLoggeado);
+ tap(isAuth => { console.log(this.loginService.usuarioLoggeado);
  if(!this.loginService.usuarioLoggeado){
  this.router.navigateByUrl('/log-in');
  }

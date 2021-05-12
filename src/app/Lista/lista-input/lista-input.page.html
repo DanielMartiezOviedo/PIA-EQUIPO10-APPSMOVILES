@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color= "primary">
+  <ion-buttons slot= "start">
+  <ion-back-button defaultHref="/inicio"></ion-back-button>
+  </ion-buttons>
+  <ion-title>Agregar nuevo pendiente</ion-title>
+    </ion-toolbar>
+ </ion-header>
+<ion-content>
+ <form [formGroup]= "dataForm" (ngSubmit)="ingresarDatos(dataForm.value)">
+ <ion-item>
+   <ion-label position="floating">Titulo</ion-label>
+   <ion-input formControlName="titulo" placeholder="Hacer la tarea"></ion-input>
+ </ion-item>
+ <div class="errors">
+   <ng-container *ngFor="let validation of mensajesValidacion.datos">
+     <div *ngIf="
+     dataForm.get('titulo').hasError(validation.type) &&
+     (dataForm.get('titulo').dirty || dataForm.get('titulo').touched)
+     ">
+       {{ validation.message }}
+     </div>
+   </ng-container>
+ </div>
+
+ <ion-button expand="block" [disabled]="dataForm.valid" type="submit" routerLink="/inicio">Ingresar</ion-button>
+</form>
+
+</ion-content>

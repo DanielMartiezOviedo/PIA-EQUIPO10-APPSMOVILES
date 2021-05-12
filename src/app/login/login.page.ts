@@ -68,8 +68,7 @@ export class LoginPage implements OnInit {
  this.isLoading = false;
  loadingEl.dismiss();
  const error = errorResponse.error.error.message;
- let mensaje =
-'Acceso incorrecto !';
+ let mensaje ='Acceso incorrecto !';
  switch(error){
  case 'EMAIL_EXISTS':
  mensaje = 'Usuario ya existe !';

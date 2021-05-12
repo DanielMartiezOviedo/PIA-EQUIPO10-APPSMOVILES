@@ -7,6 +7,11 @@ export interface Message {
   id: number;
   read: boolean;
 }
+export interface List {
+  titulo: string;
+  id: number;
+  read: boolean;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -22,10 +27,29 @@ export class DataService {
       },
   ];
 
+  public list: List[] = [
+    {
+      titulo: 'Salir a correr',
+      id: 0,
+      read: false,
+      },
+      {
+        titulo: 'Estudiar',
+        id: 0,
+        read: false,
+        },
+  ];
+
   constructor() { }
 
+ public getList(): List[] {
+    return this.list;
+  }
   public getMessages(): Message[] {
     return this.messages;
+  }
+  public getListById(id: number): List {
+    return this.list.find(el => el.id === id);
   }
 
   public getMessageById(id: number): Message {
@@ -42,6 +66,15 @@ export class DataService {
     });
 
     console.log(this.messages);
+  }
+  public addListInput(list: any) {
+    this.list.unshift({
+      titulo: list.titulo,
+      id: this.list.length,
+      read: false,
+    });
+
+    console.log(this.list);
   }
 
   getCurrentTime(){
@@ -64,4 +97,11 @@ export class DataService {
       read: false,
     });
   }
+  public addLsit() {
+    this.list.unshift({
+      titulo: 'Entrega de PIA',
+      id: this.messages.length,
+      read: false,
+    });
+    }
 }

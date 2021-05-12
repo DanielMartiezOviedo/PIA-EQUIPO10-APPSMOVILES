@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+/* eslint-disable @typescript-eslint/member-ordering */
+import { CalendarComponent } from 'ionic2-calendar';
+import { Component, ViewChild, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  eventSource = [];
+  viewTitle: string;
 
-  constructor() {}
+  calendar= {
+    mode: 'month',
+    currentDate: new Date(),
+  };
 
-}
+  @ViewChild(CalendarComponent) myCal: CalendarComponent;
+  constructor(){}
+
+ }

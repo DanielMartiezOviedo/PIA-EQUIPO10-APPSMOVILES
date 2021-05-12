@@ -13,19 +13,31 @@ const routes: Routes = [
   },
   {
     path: 'inicio',
-    loadChildren: () => import('./inicio/inicio.module').then( m => m.InicioPageModule)
+    loadChildren: () => import('./Lista/inicio/inicio.module').then( m => m.InicioPageModule)
   },
   {
     path: 'notas',
-    loadChildren: () => import('./notas/notas.module').then( m => m.NotasPageModule)
+    loadChildren: () => import('./Nota/notas/notas.module').then( m => m.NotasPageModule)
   },
   {
-    path: 'calendario',
-    loadChildren: () => import('./calendario/calendario.module').then( m => m.CalendarioPageModule)
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'nota-input',
-    loadChildren: () => import('./nota-input/nota-input.module').then( m => m.NotaInputPageModule)
+    loadChildren: () => import('./Nota/nota-input/nota-input.module').then( m => m.NotaInputPageModule)
+  },
+  {
+    path: 'cal-modal',
+    loadChildren: () => import('./pages/cal-modal/cal-modal.module').then( m => m.CalModalPageModule)
+  },
+  {
+    path: 'lista-input',
+    loadChildren: () => import('./Lista/lista-input/lista-input.module').then( m => m.ListaInputPageModule)
+  },
+  {
+    path: 'fotos-nota',
+    loadChildren: () => import('./Nota/fotos-nota/fotos-nota.module').then( m => m.FotosNotaPageModule)
   },
 
  ];
