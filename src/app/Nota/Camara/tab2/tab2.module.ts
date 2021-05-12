@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ViewMessagePage } from './view-message.page';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ViewMessagePageRoutingModule } from './view-message-routing.module';
+import { Tab2PageRoutingModule } from './tab2-routing.module';
+
+import { Tab2Page } from './tab2.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ViewMessagePageRoutingModule
+    Tab2PageRoutingModule
   ],
-  declarations: [ViewMessagePage]
+  declarations: [Tab2Page]
 })
-export class ViewMessagePageModule {}
+export class Tab2PageModule {}

@@ -36,8 +36,8 @@ const routes: Routes = [
     loadChildren: () => import('./Lista/lista-input/lista-input.module').then( m => m.ListaInputPageModule)
   },
   {
-    path: 'fotos-nota',
-    loadChildren: () => import('./Nota/fotos-nota/fotos-nota.module').then( m => m.FotosNotaPageModule)
+    path: 'tab2',
+    loadChildren: () => import('./Nota/Camara/tab2/tab2.module').then( m => m.Tab2PageModule)
   },
 
  ];
