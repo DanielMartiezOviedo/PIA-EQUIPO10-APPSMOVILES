@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 import { Injectable } from '@angular/core';
 
 export interface Message {
@@ -17,6 +18,7 @@ export interface List {
   providedIn: 'root'
 })
 export class DataService {
+  aEditar: number=-1;
   public messages: Message[] = [
     {
       titulo: 'Entrega de PIA',
@@ -67,6 +69,18 @@ export class DataService {
 
     console.log(this.messages);
   }
+
+  public editarMessageInput(message: any, index: number) {
+    this.messages[index]={
+      titulo: message.titulo,
+      descripcion: message.descripcion,
+      date: this.getCurrentTime(),
+      id: this.messages.length,
+      read: false,
+    };
+    console.log(this.messages);
+  }
+
   public addListInput(list: any) {
     this.list.unshift({
       titulo: list.titulo,
@@ -97,7 +111,7 @@ export class DataService {
       read: false,
     });
   }
-  public addLsit() {
+  public addList() {
     this.list.unshift({
       titulo: 'Entrega de PIA',
       id: this.messages.length,

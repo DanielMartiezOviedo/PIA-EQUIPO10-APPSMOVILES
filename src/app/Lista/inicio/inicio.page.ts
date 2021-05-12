@@ -1,4 +1,3 @@
-import { Usuario } from './../../login/usuario.model';
 import { Component, OnInit } from '@angular/core';
 import { DataService, List } from '../../Nota/services/data.service';
 @Component({

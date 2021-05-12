@@ -30,7 +30,8 @@
         <ion-card-subtitle>{{message.date}}</ion-card-subtitle>
         <ion-card-content>{{message.descripcion}}</ion-card-content>
       </ion-card-header>
-      <ion-button  name="trash" (click)="borrarNota(i)">Eliminar pendiente</ion-button>
+      <ion-button  (click)="borrarNota(i)">Eliminar nota</ion-button>
+      <ion-button  (click)="editarNota(i)" routerLink="/nota-editar">Editar</ion-button>
     </ion-card>
   </ion-list>
 </ion-content>

@@ -39,6 +39,10 @@ const routes: Routes = [
     path: 'tab2',
     loadChildren: () => import('./Nota/Camara/tab2/tab2.module').then( m => m.Tab2PageModule)
   },
+  {
+    path: 'nota-editar',
+    loadChildren: () => import('./Nota/nota-editar/nota-editar.module').then( m => m.NotaEditarPageModule)
+  },
 
  ];
 

@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color= "primary">
+  <ion-buttons slot= "start">
+  <ion-back-button defaultHref="/notas"></ion-back-button>
+  </ion-buttons>
+  <ion-title>Editar nota</ion-title>
+    </ion-toolbar>
+ </ion-header>
+
+ <ion-content>
+  <form [formGroup]= "datosForm" (ngSubmit)="ingresarDatos(datosForm.value)">
+    <ion-item>
+      <ion-label position="floating">Titulo</ion-label>
+      <br>
+      <ion-input color="secundary" formControlName="titulo" placeholder="{{message.titulo}}"></ion-input>
+    </ion-item>
+  <ion-item>
+    <ion-label position="floating">Descripcion</ion-label>
+     <br>
+    <ion-input color="secundary" formControlName="descripcion" placeholder="{{message.descripcion}}"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" type="submit" routerLink="/notas">Actualizar</ion-button>
+
+</form>
+ </ion-content>
+

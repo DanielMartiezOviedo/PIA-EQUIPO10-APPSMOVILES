@@ -6,6 +6,7 @@
   <ion-title>Agregar nueva nota</ion-title>
     </ion-toolbar>
  </ion-header>
+
 <ion-content>
  <form [formGroup]= "datosForm" (ngSubmit)="ingresarDatos(datosForm.value)">
  <ion-item>
@@ -28,8 +29,7 @@
  </ion-item>
  <div class="errors">
    <ng-container *ngFor="let validation of mensajesValidacion.datos">
-     <div *ngIf="
-     datosForm.get('descripcion').hasError(validation.type) &&
+     <div *ngIf=" datosForm.get('descripcion').hasError(validation.type) &&
      (datosForm.get('descripcion').dirty || datosForm.get('descripcion').touched) ">
        {{ validation.message }}
      </div>

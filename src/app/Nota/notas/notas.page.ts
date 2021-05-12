@@ -22,6 +22,9 @@ export class NotasPage implements OnInit {
   borrarNota(i){
     this.data.messages.splice(i,1);
   }
+  editarNota(i){
+    this.data.aEditar=i;
+  }
 
   ngOnInit() {
   }
