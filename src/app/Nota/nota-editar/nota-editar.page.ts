@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/quotes */
 import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule} from '@angular/forms';
 import { Router } from '@angular/router';
-import { DataService, Message } from '../services/data.service';
+import { DataService, Message } from '../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -22,11 +22,11 @@ export class NotaEditarPage implements OnInit {
     this.datosForm = this.formBuilder.group({
       titulo: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$')
+        Validators.pattern('')
       ])),
       descripcion: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$')
+        Validators.pattern('')
 
       ])),
       id: new FormControl('', Validators.compose([

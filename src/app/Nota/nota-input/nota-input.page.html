@@ -9,10 +9,7 @@
 
 <ion-content>
  <form [formGroup]= "datosForm" (ngSubmit)="ingresarDatos(datosForm.value)">
- <ion-item>
-   <ion-label position="floating">Titulo</ion-label>
-   <ion-input formControlName="titulo" placeholder="Examen de Probabilidad"></ion-input>
- </ion-item>
+
  <div class="errors">
    <ng-container *ngFor="let validation of mensajesValidacion.datos">
      <div *ngIf="

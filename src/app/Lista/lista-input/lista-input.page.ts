@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule} from '@angular/forms';
 import { Router } from '@angular/router';
-import { DataService, List } from '../../Nota/services/data.service';
+import { DataService, List } from '../../services/data.service';
 @Component({
   selector: 'app-lista-input',
   templateUrl: './lista-input.page.html',
@@ -20,11 +20,11 @@ export class ListaInputPage implements OnInit {
     this.dataForm = this.formBuilder.group({
       titulo: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$')
+        Validators.pattern('')
       ])),
       descripcion: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$')
+        Validators.pattern('')
       ])),
       id: new FormControl('', Validators.compose([
         Validators.required,

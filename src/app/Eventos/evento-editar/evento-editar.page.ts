@@ -1,24 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+/* eslint-disable @typescript-eslint/type-annotation-spacing */
 import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule} from '@angular/forms';
 import { Router } from '@angular/router';
-import { DataService, Message } from '../../services/data.service';
+import { DataService, Eventos } from '../../services/data.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-nota-input',
-  templateUrl: './nota-input.page.html',
-  styleUrls: ['./nota-input.page.scss'],
+  selector: 'app-evento-editar',
+  templateUrl: './evento-editar.page.html',
+  styleUrls: ['./evento-editar.page.scss'],
 })
-export class NotaInputPage implements OnInit {
-  message: Message;
-  datosForm: FormGroup;
-  mensajesValidacion = {
-    datos: [
-      {type:'required', message: 'Por favor llene el dato completo.'},
-      {type:'pattern', message: 'Por favor use carácteres válidos.'},
-    ]
-  };
+export class EventoEditarPage implements OnInit {
+  fecha : string;
+  eventos: Eventos;
+  datosEForm: FormGroup;
   constructor(private formBuilder: FormBuilder, private data: DataService, private router: Router) {
-    this.datosForm = this.formBuilder.group({
+    this.datosEForm = this.formBuilder.group({
       titulo: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('')
@@ -31,16 +27,21 @@ export class NotaInputPage implements OnInit {
       id: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[0-9]*$')
-      ]))
+      ])),
+      date: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('')
+      ])),
     });
    }
-
-   ngOnInit() {
+   fechaSelect(e){
+    this.fecha= e.detail.value;
   }
-
+  ngOnInit() {
+  }
   ingresarDatos(datos){
-    this.data.addMessageInput(datos);
-    this.router.navigateByUrl('/notas');
+    this.data.addEventoInput(datos);
+    this.router.navigateByUrl('/home');
   }
 
   getBackButtonText() {

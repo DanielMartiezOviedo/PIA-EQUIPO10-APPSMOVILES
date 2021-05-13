@@ -1,6 +1,6 @@
 /* eslint-disable eol-last */
 import { Component, OnInit } from '@angular/core';
-import { DataService, Message } from '../services/data.service';
+import { DataService, Message } from '../../services/data.service';
 @Component({
   selector: 'app-notas',
   templateUrl: './notas.page.html',

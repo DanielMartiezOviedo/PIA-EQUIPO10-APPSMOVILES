@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CalModalPage } from './cal-modal.page';
+import { EventoInputPage } from './evento-input.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: CalModalPage
+    component: EventoInputPage
   }
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class CalModalPageRoutingModule {}
+export class EventoInputPageRoutingModule {}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService, List } from '../../Nota/services/data.service';
+import { DataService, List } from '../../services/data.service';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.page.html',

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color= "primary">
+  <ion-buttons slot= "start">
+  <ion-back-button defaultHref="/home"></ion-back-button>
+  </ion-buttons>
+  <ion-title>Agregar nuevo evento</ion-title>
+    </ion-toolbar>
+ </ion-header>
+
+
+<ion-content>
+  <form [formGroup]= "datosEForm" (ngSubmit)="ingresarDatos(datosEForm.value)">
+    <ion-item (ionChange)="fechaSelect($event)">
+    <ion-label><ion-icon name="calendar"></ion-icon>Fecha</ion-label>
+    <ion-datetime formControlName="date" placeholder="Seleccionar" displayFormat="MMM DD, YYYY, HH" display-timezone="utc" min="2021-05-20" max="2050-12-31"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Titulo evento</ion-label>
+    <ion-input formControlName="titulo" placeholder="Boda"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Descripcion</ion-label>
+    <ion-input formControlName="descripcion" placeholder="Boda de amigo Omar"></ion-input>
+  </ion-item>
+  <ion-button expand="block" type="submit" routerLink="/home">Ingresar</ion-button>
+
+</form>
+</ion-content>

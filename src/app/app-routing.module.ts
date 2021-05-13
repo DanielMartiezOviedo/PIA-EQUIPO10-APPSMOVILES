@@ -20,16 +20,8 @@ const routes: Routes = [
     loadChildren: () => import('./Nota/notas/notas.module').then( m => m.NotasPageModule)
   },
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
     path: 'nota-input',
     loadChildren: () => import('./Nota/nota-input/nota-input.module').then( m => m.NotaInputPageModule)
-  },
-  {
-    path: 'cal-modal',
-    loadChildren: () => import('./pages/cal-modal/cal-modal.module').then( m => m.CalModalPageModule)
   },
   {
     path: 'lista-input',
@@ -42,6 +34,18 @@ const routes: Routes = [
   {
     path: 'nota-editar',
     loadChildren: () => import('./Nota/nota-editar/nota-editar.module').then( m => m.NotaEditarPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./Eventos/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'evento-input',
+    loadChildren: () => import('./Eventos/evento-input/evento-input.module').then( m => m.EventoInputPageModule)
+  },
+  {
+    path: 'evento-editar',
+    loadChildren: () => import('./Eventos/evento-editar/evento-editar.module').then( m => m.EventoEditarPageModule)
   },
 
  ];

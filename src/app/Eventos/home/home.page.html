@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Calendario</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button routerLink="/evento-input">
+        <ion-icon name="add" slot="icon-only"></ion-icon>
+    </ion-button>
+
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list *ngFor="let eventos of getEventos(); let i = index">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title displayFormat="MMM DD, YYYY, HH"><ion-icon name="Calendar"></ion-icon>{{eventos.date| date}}</ion-card-title>
+        <ion-card-subtitle >{{eventos.titulo}}</ion-card-subtitle>
+        <ion-card-content>{{eventos.descripcion}}</ion-card-content>
+      </ion-card-header>
+      <ion-button  (click)="borrarEvento(i)">Eliminar nota</ion-button>
+      <ion-button  (click)="editarEvento(i)" routerLink="/evento-editar">Editar</ion-button>
+          </ion-card>
+  </ion-list>
+</ion-content>
+

@@ -8,6 +8,14 @@ export interface Message {
   id: number;
   read: boolean;
 }
+export interface Eventos {
+  titulo: string;
+  descripcion: string;
+  date: string;
+  id: number;
+  read: boolean;
+}
+
 export interface List {
   titulo: string;
   id: number;
@@ -28,6 +36,9 @@ export class DataService {
       read: false,
       },
   ];
+  public eventos: Eventos[] = [
+
+  ];
 
   public list: List[] = [
     {
@@ -41,7 +52,6 @@ export class DataService {
         read: false,
         },
   ];
-
   constructor() { }
 
  public getList(): List[] {
@@ -50,12 +60,18 @@ export class DataService {
   public getMessages(): Message[] {
     return this.messages;
   }
+  public getEventos(): Eventos[] {
+    return this.eventos;
+  }
   public getListById(id: number): List {
     return this.list.find(el => el.id === id);
   }
 
   public getMessageById(id: number): Message {
     return this.messages.find(el => el.id === id);
+  }
+  public getEventoById(id: number): Eventos{
+    return this.eventos.find(el => el.id === id);
   }
 
   public addMessageInput(message: any) {
@@ -79,6 +95,28 @@ export class DataService {
       read: false,
     };
     console.log(this.messages);
+  }
+
+  public editarEventoInput(eventos: any, index: number) {
+    this.eventos[index]={
+      titulo: eventos.titulo,
+      descripcion: eventos.descripcion,
+      date: eventos.date,
+      id: this.eventos.length,
+      read: false,
+    };
+    console.log(this.eventos);
+  }
+  public addEventoInput(eventos: any) {
+    this.eventos.unshift({
+      titulo: eventos.titulo,
+      descripcion: eventos.descripcion,
+      date: eventos.date,
+      id: this.eventos.length,
+      read: false,
+    });
+
+    console.log(this.eventos);
   }
 
   public addListInput(list: any) {
@@ -117,5 +155,15 @@ export class DataService {
       id: this.messages.length,
       read: false,
     });
+    }
+
+    public addEvento() {
+      this.messages.unshift({
+        titulo: 'Boda',
+        descripcion: 'Boda de hermano',
+        date: '',
+        id: this.messages.length,
+        read: false,
+      });
     }
 }
