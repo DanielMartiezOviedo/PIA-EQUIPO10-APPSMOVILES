@@ -38,9 +38,14 @@ export class EventoEditarPage implements OnInit {
     this.fecha= e.detail.value;
   }
   ngOnInit() {
+    this.getEvento();
   }
+getEvento(){
+  this.eventos=this.data.eventos[this.data.aEditar];
+}
+
   ingresarDatos(datos){
-    this.data.addEventoInput(datos);
+    this.data.editarEventoInput(datos, this.data.aEditar);
     this.router.navigateByUrl('/home');
   }
 

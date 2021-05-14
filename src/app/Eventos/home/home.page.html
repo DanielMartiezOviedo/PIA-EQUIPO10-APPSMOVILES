@@ -15,7 +15,7 @@
   <ion-list *ngFor="let eventos of getEventos(); let i = index">
     <ion-card>
       <ion-card-header>
-        <ion-card-title displayFormat="MMM DD, YYYY, HH"><ion-icon name="Calendar"></ion-icon>{{eventos.date| date}}</ion-card-title>
+        <ion-card-title displayFormat="MMM DD, YYYY, HH"><ion-icon name="Calendar"></ion-icon>      {{eventos.date| date}}</ion-card-title>
         <ion-card-subtitle >{{eventos.titulo}}</ion-card-subtitle>
         <ion-card-content>{{eventos.descripcion}}</ion-card-content>
       </ion-card-header>
