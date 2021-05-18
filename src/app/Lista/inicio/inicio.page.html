@@ -14,7 +14,7 @@
 </ion-list-header>
 <ion-list *ngFor="let message of getList(); let i = index">
         <ion-item>
-          <ion-label>{{message.titulo}}</ion-label><ion-checkbox></ion-checkbox><ion-button name="trash" (click)="borrarList(i)">Borrar</ion-button>
+          <ion-label>{{message.titulo}}</ion-label><ion-checkbox></ion-checkbox><ion-button name="trash" (click)="borrarList(i)">Eliminar</ion-button>
         </ion-item>
 </ion-list>
 </ion-content>

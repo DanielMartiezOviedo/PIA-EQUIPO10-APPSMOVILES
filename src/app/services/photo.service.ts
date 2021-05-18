@@ -22,32 +22,32 @@ export class PhotoService {
   constructor() { }
 
   public async loadSaved() {
-    // Retrieve cached photo array data
+    // Recuperar datos de matrices de fotos en caché
     const photoList = await Storage.get({ key: this.PHOTO_STORAGE });
     this.photos = JSON.parse(photoList.value) || [];
 
-    // Display the photo by reading into base64 format
+    //Muestre la foto leyendo en formato base64
     for (let photo of this.photos) {
-      // Read each saved photo's data from the Filesystem
+      // Leer los datos de cada foto guardada del sistema de archivos
       const readFile = await Filesystem.readFile({
         path: photo.filepath,
         directory: FilesystemDirectory.Data
       });
 
-      // Web platform only: Load the photo as base64 data
+      // Solo plataforma web: cargue la foto como datos base64
       photo.webviewPath = `data:image/jpeg;base64,${readFile.data}`;
     }
   }
 
   public async addNewToGallery() {
-    // Take a photo
+    // Tomar la foto
     const capturedPhoto = await Camera.getPhoto({
       resultType: CameraResultType.Uri,
       source: CameraSource.Camera,
-      quality: 100
+      quality: 300
     });
 
-    // Save the picture and add it to photo collection
+    // Guardar la foto y agregarla a la galeria
     const savedImageFile = await this.savePicture(capturedPhoto);
     this.photos.unshift(savedImageFile);
 
@@ -59,10 +59,10 @@ export class PhotoService {
   }
 
   private async savePicture(cameraPhoto: CameraPhoto) {
-    // Convert photo to base64 format, required by Filesystem API to save
+    // Convierta la foto al formato base64, requerido por la API del sistema de archivos para guardar
     const base64Data = await this.readAsBase64(cameraPhoto);
 
-    // Write the file to the data directory
+    //Escribe el archivo en el directorio de datos.
     const fileName = new Date().getTime() + '.jpeg';
     const savedFile = await Filesystem.writeFile({
       path: fileName,
@@ -70,8 +70,7 @@ export class PhotoService {
       directory: FilesystemDirectory.Data
     });
 
-    // Use webPath to display the new image instead of base64 since it's
-    // already loaded into memory
+    // Use webPath para mostrar la nueva imagen en lugar de base64, ya que ya está cargada en la memoria
     return {
       filepath: fileName,
       webviewPath: cameraPhoto.webPath
@@ -79,7 +78,7 @@ export class PhotoService {
   }
 
   private async readAsBase64(cameraPhoto: CameraPhoto) {
-    // Fetch the photo, read as a blob, then convert to base64 format
+    // Obtenga la foto, léala como un blob y luego conviértala al formato base64
     const response = await fetch(cameraPhoto.webPath!);
     const blob = await response.blob();
 
