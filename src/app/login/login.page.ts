@@ -12,8 +12,14 @@ import { Observable } from 'rxjs';
  styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
- isLoading: boolean = false;
+  //Se utliza un form para el envió de la información
+  //para posteriormente validarla y poder autenticarnos
+
+ //Variables para saber si se intenta ingresar o registrarse
+  isLoading: boolean = false;
  isLoginMode: boolean = true;
+
+ //Inyeccion de dependencias
  constructor(
  private loginService: LoginService,
  private router: Router,
@@ -22,6 +28,9 @@ export class LoginPage implements OnInit {
  ) { }
  ngOnInit() {
  }
+
+//Metodo que trabaja con el ingreso de los datos del usuario, en caso de ser correctos se mandan al
+//metodo de autenticacion para proceder al log in
  onSubmit(form: NgForm){
  if(!form.valid){
  return false;
@@ -29,11 +38,14 @@ export class LoginPage implements OnInit {
  const email = form.value.email;
  const pass = form.value.password;
  this.authenticate(email, pass);
-
  }
+
+//Metodo switch para saber si se registra o ingresa
  onSwitchAuthMode(){
  this.isLoginMode = !this.isLoginMode;
  }
+
+//Metodo para mensajes de alerta
  showAlert(titulo: string, mensaje: string){
  this.alertCtrl.create({
  header: titulo,
@@ -41,6 +53,8 @@ export class LoginPage implements OnInit {
  buttons: ['OK']
  }).then(alertEl => alertEl.present());
  }
+
+//Este metodo es para la autenticacion, en el cual se consume el metodo login para el ingreso
  authenticate(email: string, password: string){
  this.isLoading = true;
  //this.loginService.login();
@@ -57,7 +71,6 @@ export class LoginPage implements OnInit {
  else{
  authObs = this.loginService.signup(email, password);
  }
- //this.loginService.signup(email, password).subscribe(response => {
  authObs.subscribe(response => {
  console.log(response);
  this.isLoading = false;
@@ -68,6 +81,7 @@ export class LoginPage implements OnInit {
  this.isLoading = false;
  loadingEl.dismiss();
  const error = errorResponse.error.error.message;
+ //Mensajes para los diferentes casos de error en el login
  let mensaje ='Acceso incorrecto !';
  switch(error){
  case 'EMAIL_EXISTS':

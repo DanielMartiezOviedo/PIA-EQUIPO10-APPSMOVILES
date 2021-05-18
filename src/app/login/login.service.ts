@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Usuario } from './usuario.model';
-export interface LoginResponseData{// exportamos esta interface
+export interface LoginResponseData{// exportamos esta interface para consumir la API
  kind: string;
  idToken: string,
  email: string;
@@ -21,8 +21,10 @@ export interface LoginResponseData{// exportamos esta interface
  providedIn: 'root'
 })
 export class LoginService {
+  //Variables que se usan a la hora de mapear el usuario
  private _usuarioLoggeado = true;
  private _usuario = new BehaviorSubject<Usuario>(null);
+
  get usuarioLoggeado(){
  //return this._usuarioLoggeado;
  return this._usuario.asObservable().pipe(map(user => {
@@ -34,23 +36,33 @@ export class LoginService {
  }
  }));
  }
+ //inyeccion de la dependencia HttpClient
  constructor(
  private http: HttpClient
  ) { }
+
+//Metodo para cerrar sesion
  logout(){
- //this._usuarioLoggeado = false;
  this._usuario.next(null);
  }
+
+//Se consume la API enviando como parametros el email y la password ingresados
  signup(email: string, password: string){
  return this.http.post<LoginResponseData>(
  `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseAPIKey}`,
  {email: email, password: password, returnSecureToken: true}
  );
  }
- private setUserDate(userData: LoginResponseData){//guardamos el usuario logeado
+
+
+//En este metodo guardamos el usuario logeado
+ private setUserDate(userData: LoginResponseData){
  const expTime = new Date(new Date().getTime() + (+userData.expiresIn * 1000));
  this._usuario.next(new Usuario(userData.localId, userData.email, userData.idToken, expTime));
  }
+
+
+//Metodo para hacer el login con los usuarios ya guardados
  login(email: string, password: string){
  return this.http.post<LoginResponseData>(
  `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseAPIKey}`,
