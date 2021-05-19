@@ -72,6 +72,7 @@ export class LoginPage implements OnInit {
  authObs = this.loginService.signup(email, password);
  }
  authObs.subscribe(response => {
+this.loginService.addUsuario(0, email, password);
  console.log(response);
  this.isLoading = false;
  loadingEl.dismiss();
