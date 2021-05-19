@@ -11,7 +11,7 @@
  <form [formGroup]= "datosForm" (ngSubmit)="ingresarDatos(datosForm.value)">
   <ion-item>
     <ion-label position="floating">Titulo</ion-label>
-    <ion-input formControlName="titulo" placeholder="Tarea"></ion-input>
+    <ion-input formControlName="titulo" placeholder="Ejem. Estudiar para el examen de Apps"></ion-input>
   </ion-item>
  <div class="errors">
    <ng-container *ngFor="let validation of mensajesValidacion.datos">
@@ -25,7 +25,7 @@
  </div>
  <ion-item>
    <ion-label position="floating">Descripcion</ion-label>
-   <ion-input formControlName="descripcion" placeholder="Estudiar apuntes"></ion-input>
+   <ion-input formControlName="descripcion" placeholder="Ejem. Estudiar pagina 198 del libro"></ion-input>
  </ion-item>
  <div class="errors">
    <ng-container *ngFor="let validation of mensajesValidacion.datos">
@@ -36,7 +36,7 @@
    </ng-container>
  </div>
 
- <ion-button expand="block" [disabled]="datosForm.valid" type="submit" routerLink="/notas">Ingresar</ion-button>
+ <ion-button required expand="block" [disabled]="datosForm.valid" type="submit" routerLink="/notas">Ingresar</ion-button>
 </form>
 
 </ion-content>

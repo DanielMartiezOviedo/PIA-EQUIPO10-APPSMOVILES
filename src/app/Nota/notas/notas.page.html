@@ -11,7 +11,7 @@
 
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content class="ion-content" [fullscreen]="true">
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -22,9 +22,9 @@
     </ion-toolbar>
   </ion-header>
   <ion-list *ngFor="let message of getMessages(); let i = index">
-    <ion-card>
+    <ion-card class="ion-card">
       <ion-card-header>
-        <ion-card-title >{{message.titulo}}</ion-card-title>
+        <ion-card-title class="ion-card-title" >{{message.titulo}}</ion-card-title>
         <ion-card-subtitle>{{message.date}}</ion-card-subtitle>
         <ion-card-content>{{message.descripcion}}</ion-card-content>
       </ion-card-header>

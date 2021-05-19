@@ -25,22 +25,21 @@ export class PhotoService {
   }
 
   public async loadSaved() {
-    // Retrieve cached photo array data
+    // Recupera los datos de la matriz de fotos en caché
     const photoList = await Storage.get({ key: this.PHOTO_STORAGE });
     this.photos = JSON.parse(photoList.value) || [];
 
-    // Easiest way to detect when running on the web:
-    // “when the platform is NOT hybrid, do this”
+    // Aqui se detecta si se esta corriendo en la web, y en dado caso de que no, le indica que hacer
     if (!this.platform.is('hybrid')) {
-      // Display the photo by reading into base64 format
+      // Muestra la foto en formato base64
       for (let photo of this.photos) {
-        // Read each saved photo's data from the Filesystem
+        // Lee los datos de cada foto guardada del sistema de archivos
         const readFile = await Filesystem.readFile({
             path: photo.filepath,
             directory: FilesystemDirectory.Data
         });
 
-        // Web platform only: Load the photo as base64 data
+        // Solo plataforma web: carga la foto como datos base64
         photo.webviewPath = `data:image/jpeg;base64,${readFile.data}`;
       }
     }
@@ -64,12 +63,12 @@ export class PhotoService {
 
   }
 
- // Save picture to file on device
+ // Guardar la imagen en un archivo en el dispositivo
  private async savePicture(cameraPhoto: CameraPhoto) {
-  // Convert photo to base64 format, required by Filesystem API to save
+  // Convierte la foto al formato base64, requerido por la API del sistema de archivos para guardar
   const base64Data = await this.readAsBase64(cameraPhoto);
 
-  // Write the file to the data directory
+  // Escribe el archivo en el directorio de datos
   const fileName = new Date().getTime() + '.jpeg';
   const savedFile = await Filesystem.writeFile({
     path: fileName,
@@ -86,8 +85,7 @@ export class PhotoService {
     };
   }
   else {
-    // Use webPath to display the new image instead of base64 since it's
-    // already loaded into memory
+// Use webPath para mostrar la nueva imagen en lugar de base64 ya que ya esta guardada en la memoria
     return {
       filepath: fileName,
       webviewPath: cameraPhoto.webPath
@@ -97,16 +95,16 @@ export class PhotoService {
 
 
 public async deletePicture(photo: Photo, position: number) {
-  // Remove this photo from the Photos reference data array
+  // Elimina la foto usando como referencia el arreglo Photos
   this.photos.splice(position, 1);
 
-  // Update photos array cache by overwriting the existing photo array
+  // Actualice la memoria caché de la matriz de fotos sobrescribiendo la matriz de fotos existente
   Storage.set({
     key: this.PHOTO_STORAGE,
     value: JSON.stringify(this.photos)
   });
 
-  // delete photo file from filesystem
+  // Eliminar archivo de foto del sistema de archivos
   const filename = photo.filepath
                       .substr(photo.filepath.lastIndexOf('/') + 1);
 
@@ -118,9 +116,9 @@ public async deletePicture(photo: Photo, position: number) {
 
 
   private async readAsBase64(cameraPhoto: CameraPhoto) {
-    // "hybrid" will detect Cordova or Capacitor
+    // "hybrid" detectara Cordova o Capacitor
     if (this.platform.is('hybrid')) {
-      // Read the file into base64 format
+      // Lee el archivo en formato base64
       const file = await Filesystem.readFile({
         path: cameraPhoto.path
       });
@@ -128,7 +126,7 @@ public async deletePicture(photo: Photo, position: number) {
       return file.data;
     }
     else {
-      // Fetch the photo, read as a blob, then convert to base64 format
+      // Obtener la foto, leerla como un blob y luego convertirla al formato base64
       const response = await fetch(cameraPhoto.webPath);
       const blob = await response.blob();
 
