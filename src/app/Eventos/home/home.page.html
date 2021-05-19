@@ -25,10 +25,12 @@
             <ion-card-subtitle>{{eventos.descripcion}}</ion-card-subtitle>
             </div>
           </div>
-            <ion-button class="boton" (click)="editarEvento(i)" routerLink="/evento-editar"><ion-icon slot="end" name="chevron-forward-outline" ></ion-icon></ion-button>
         </div>
+          <ion-button class="boton" (click)="borrarEvento(i)" ><ion-icon slot="end" name="trash" ></ion-icon></ion-button>
+            <ion-button class="boton" (click)="editarEvento(i)" routerLink="/evento-editar"><ion-icon slot="end" name="chevron-forward-outline" ></ion-icon></ion-button>
+
       </ion-card-header>
-     
+
           </ion-card>
   </ion-list>
 </ion-content>
