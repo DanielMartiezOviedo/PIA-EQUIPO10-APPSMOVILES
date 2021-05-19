@@ -10,18 +10,25 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-content">
+<ion-content>
 
   <ion-list *ngFor="let eventos of getEventos(); let i = index">
-    <ion-card class="ion-card">
+    <ion-card>
       <ion-card-header>
-        <ion-card-title class="ion-card-title" displayFormat="MMM DD, YYYY, HH"><ion-icon class="ion-icon" name="Calendar"></ion-icon>      {{eventos.date| date}}</ion-card-title>
-        <ion-card-subtitle >{{eventos.titulo}}</ion-card-subtitle>
-        <ion-card-content>{{eventos.descripcion}}</ion-card-content>
+        <ion-card-title displayFormat="MMM DD, YYYY">      {{eventos.date| date}}</ion-card-title>
+        <hr style="height: 1px; border: none; color: aqua; background-color: #515356;">
+        <div class="contenido">
+          <div class="texto">
+            <ion-icon name="Calendar"></ion-icon>
+            <div class="texto-correccion">
+            <ion-card-title >{{eventos.titulo}}</ion-card-title>
+            <ion-card-subtitle>{{eventos.descripcion}}</ion-card-subtitle>
+            </div>
+          </div>
+            <ion-button class="boton" (click)="editarEvento(i)" routerLink="/evento-editar"><ion-icon slot="end" name="chevron-forward-outline" ></ion-icon></ion-button>
+        </div>
       </ion-card-header>
-      <ion-button  (click)="borrarEvento(i)">Eliminar</ion-button>
-      <ion-button  (click)="editarEvento(i)" routerLink="/evento-editar">Editar</ion-button>
+     
           </ion-card>
   </ion-list>
 </ion-content>
-
