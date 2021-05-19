@@ -17,19 +17,25 @@
   </ion-refresher>
 
 <ion-header collapse="condense">
- <ion-toolbar>
- <ion-title size="large">Notas</ion-title>
+<ion-toolbar>
+<ion-title size="large">Notas</ion-title>
 </ion-toolbar>
-  </ion-header>
+</ion-header>
+
+
   <ion-list *ngFor="let message of getMessages(); let i = index">
-    <ion-card class="ion-card">
-      <ion-card-header>
+    <ion-card>
         <ion-card-title class="ion-card-title" >{{message.titulo}}</ion-card-title>
+        <hr style="height: 1px; border: none; color: aqua; background-color: #515356;">
+      <ion-card-header>
+
         <ion-card-subtitle>{{message.date}}</ion-card-subtitle>
-        <ion-card-content>{{message.descripcion}}</ion-card-content>
+        <ion-card-content><ion-icon name="create"></ion-icon>{{message.descripcion}}</ion-card-content>
       </ion-card-header>
-      <ion-button  (click)="borrarNota(i)">Eliminar</ion-button>
-      <ion-button  (click)="editarNota(i)" routerLink="/nota-editar">Editar</ion-button>
+      <div align="center">
+      <ion-button  (click)="borrarNota(i)"><ion-icon slot="end" name="trash" ></ion-icon></ion-button>
+      <ion-button  (click)="editarNota(i)" routerLink="/nota-editar"><ion-icon size=2 slot="end" name="chevron-forward-outline" ></ion-icon></ion-button>
+    </div>
     </ion-card>
   </ion-list>
 </ion-content>
