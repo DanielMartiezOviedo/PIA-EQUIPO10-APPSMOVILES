@@ -1,10 +1,12 @@
+import { DataService } from './../services/data.service';
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 import { LoginService, LoginResponseData } from './login.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Data, Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { formatCurrency } from '@angular/common';
 @Component({
  selector: 'app-login'
 ,
@@ -16,7 +18,7 @@ export class LoginPage implements OnInit {
   //para posteriormente validarla y poder autenticarnos
 
  //Variables para saber si se intenta ingresar o registrarse
-  isLoading: boolean = false;
+ isLoading: boolean = false;
  isLoginMode: boolean = true;
 
  //Inyeccion de dependencias
@@ -24,7 +26,8 @@ export class LoginPage implements OnInit {
  private loginService: LoginService,
  private router: Router,
  private loadingCtrl: LoadingController,
- private alertCtrl: AlertController
+ private alertCtrl: AlertController,
+ private data: DataService
  ) { }
  ngOnInit() {
  }
@@ -72,7 +75,9 @@ export class LoginPage implements OnInit {
  authObs = this.loginService.signup(email, password);
  }
  authObs.subscribe(response => {
-this.loginService.addUsuario(0, email, password);
+this.data.correo=email;
+console.log('Variable del correo guardada: '+this.data.correo);
+ //this.loginService.addUsuario(0, email, password);
  console.log(response);
  this.isLoading = false;
  loadingEl.dismiss();

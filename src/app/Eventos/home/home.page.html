@@ -1,37 +1,39 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Calendario</ion-title>
+    <ion-title align="center">Calendario</ion-title>
     <ion-buttons slot="primary">
       <ion-button routerLink="/evento-input">
         <ion-icon name="add" slot="icon-only"></ion-icon>
     </ion-button>
-
     </ion-buttons>
   </ion-toolbar>
+  <meta charset="UTF-8">
 </ion-header>
 
 <ion-content>
 
   <ion-list *ngFor="let eventos of getEventos(); let i = index">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title displayFormat="MMM DD, YYYY, HH">      {{eventos.date| date}}</ion-card-title>
-        <hr style="height: 1px; border: none; color: aqua; background-color: #515356;">
-        <div class="contenido">
-          <div class="texto">
-            <ion-icon name="Calendar"></ion-icon>
-            <div class="texto-correccion">
-            <ion-card-title >{{eventos.titulo}}</ion-card-title>
-            <ion-card-subtitle>{{eventos.descripcion}}</ion-card-subtitle>
+    <div *ngIf="eventos.email == data.correo">
+      <div align="center" class="container">
+        <div class="card-container">
+          <div class="header">
+            <a>
+              <img width="100" height="100"  src="https://as2.ftcdn.net/jpg/01/30/05/01/500_F_130050153_Hvj03RaQtzVRsAwbHAAU3UTnJD5mQ42X.jpg" alt="">
+            </a>
+            <h2>{{eventos.date|date}}</h2>
+            <h4>{{eventos.titulo}}</h4>
+            <hr style="height: 1px; border: none; color: aqua; background-color: #4d4d4d;">
+
             </div>
+            <div class="descripcion">
+              <p>{{eventos.descripcion}}</p>
+              <div class="actions" align="center">
+                <a><ion-icon class="ion-icon" slot="end" (click)="borrarEvento(i)" name="trash"></ion-icon></a>
+                <a><ion-icon class="ion-icon" slot="end" (click)="editarEvento(i)" routerLink="/evento-editar" name="create"></ion-icon></a>
+           </div>
           </div>
         </div>
-        <div class="padre" align="center">
-          <ion-button class="boton" (click)="borrarEvento(i)" ><ion-icon slot="end" name="trash" ></ion-icon></ion-button>
-            <ion-button class="boton" (click)="editarEvento(i)" routerLink="/evento-editar"><ion-icon slot="end" name="chevron-forward-outline" ></ion-icon></ion-button>
-          </div>
-      </ion-card-header>
-
-          </ion-card>
+      </div>
+    </div>
   </ion-list>
 </ion-content>

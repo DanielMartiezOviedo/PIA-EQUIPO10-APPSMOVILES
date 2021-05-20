@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor(private data: DataService) {}
+  constructor(public data: DataService) {}
   //Metodo que refresca la pagina cada 1000 milisegundos
   refresh(ev) {
     setTimeout(() => {

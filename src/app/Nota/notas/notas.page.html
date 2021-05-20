@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color= "primary">
-    <ion-title>Notas</ion-title>
-    <ion-buttons slot="primary"><ion-button routerLink="/tab2">Notas Rapidas<ion-icon name="camera"></ion-icon></ion-button>
+    <ion-title align="center">Notas</ion-title>
+    <ion-buttons slot="primary"><ion-button routerLink="/tab2"><ion-icon name="images"></ion-icon></ion-button>
       <ion-button routerLink="/nota-input">
         <ion-icon name="add" slot="icon-only"></ion-icon>
     </ion-button>
@@ -11,31 +11,28 @@
 
 </ion-header>
 
-<ion-content class="ion-content" [fullscreen]="true">
-  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-
-<ion-header collapse="condense">
-<ion-toolbar>
-<ion-title size="large">Notas</ion-title>
-</ion-toolbar>
-</ion-header>
-
-
+<ion-content [fullscreen]="true">
   <ion-list *ngFor="let message of getMessages(); let i = index">
-    <ion-card>
-        <ion-card-title class="ion-card-title" >{{message.titulo}}</ion-card-title>
-        <hr style="height: 1px; border: none; color: aqua; background-color: #515356;">
-      <ion-card-header>
+    <div *ngIf="message.email == data.correo">
+      <div align="center" class="container">
+        <div class="card-container">
+          <div class="header">
+            <a>
+              <img width="100" height="100"  src="https://cefoped.com/inicio/wp-content/uploads/2020/11/Checklist.png" alt="">
+            </a>
+            <h4>{{message.titulo}}</h4>
+            <hr style="height: 1px; border: none; color: aqua; background-color: #4d4d4d;">
 
-        <ion-card-subtitle>{{message.date}}</ion-card-subtitle>
-        <ion-card-content><ion-icon name="create"></ion-icon>{{message.descripcion}}</ion-card-content>
-      </ion-card-header>
-      <div align="center">
-      <ion-button  (click)="borrarNota(i)"><ion-icon slot="end" name="trash" ></ion-icon></ion-button>
-      <ion-button  (click)="editarNota(i)" routerLink="/nota-editar"><ion-icon size=2 slot="end" name="chevron-forward-outline" ></ion-icon></ion-button>
-    </div>
-    </ion-card>
+            </div>
+            <div class="descripcion">
+              <p>{{message.descripcion}}</p>
+              <div class="actions" align="center">
+                <a><ion-icon class="ion-icon" slot="end" (click)="borrarNota(i)" name="trash"></ion-icon></a>
+                <a><ion-icon class="ion-icon" slot="end" (click)="editarNota(i)" routerLink="/nota-editar" name="create"></ion-icon></a>
+           </div>
+          </div>
+        </div>
+      </div>
+  </div>
   </ion-list>
 </ion-content>

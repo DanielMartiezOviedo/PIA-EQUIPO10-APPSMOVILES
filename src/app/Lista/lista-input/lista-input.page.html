@@ -10,12 +10,11 @@
  <form [formGroup]= "dataForm" (ngSubmit)="ingresarDatos(dataForm.value)">
  <ion-item>
    <ion-label position="floating">Titulo</ion-label>
-   <ion-input formControlName="titulo" placeholder="Hacer la tarea"></ion-input>
+   <ion-textarea formControlName="titulo" placeholder="Ejem. Hacer la tarea"></ion-textarea>
  </ion-item>
  <div class="errors">
    <ng-container *ngFor="let validation of mensajesValidacion.datos">
-     <div *ngIf="
-     dataForm.get('titulo').hasError(validation.type) &&
+     <div *ngIf="dataForm.get('titulo').hasError(validation.type) &&
      (dataForm.get('titulo').dirty || dataForm.get('titulo').touched)
      ">
        {{ validation.message }}

@@ -15,12 +15,12 @@ Notas rapidas    </ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-grid>
+  <ion-grid class="ion-grid">
     <ion-row>
       <ion-col size="12"  *ngFor="let photo of photoService.photos; index as position">
     <ion-img [src]="photo.webviewPath"
              (click)="showActionSheet(photo, position)"></ion-img>
-  </ion-col>
+      </ion-col>
     </ion-row>
   </ion-grid>
 

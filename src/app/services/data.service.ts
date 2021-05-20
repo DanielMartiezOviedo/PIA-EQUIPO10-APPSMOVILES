@@ -1,10 +1,13 @@
+import { LoginPage } from './../login/login.page';
+import { LoginService } from './../login/login.service';
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/member-ordering */
-import { Storage } from '@ionic/storage-angular';
-import { AlertController } from '@ionic/angular';
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 import { Injectable , OnInit} from '@angular/core';
+import { Storage } from '@ionic/storage-angular';
+import { AlertController } from '@ionic/angular';
+import { VirtualTimeScheduler } from 'rxjs';
 
 //Las siguientes interfaces son las que se utilizaran para crear
 //los arreglos donde se guardaran los datos
@@ -19,6 +22,8 @@ export interface Message {
   date: string;
   id: number;
   read: boolean;
+  email: string;
+
 }
 //Eventos: Interfaz creada para los eventos, con titulo, descripcion;
 //-Tiene el id para su manejo en el arreglo
@@ -29,14 +34,16 @@ export interface Eventos {
   date: string;
   id: number;
   read: boolean;
+  email: string;
 }
 //List: Interfaz creada para las listas de pendientes, cuenta con titulo, descripcion;
-//-Tiene el id para su manejo en el arreglo
-//-Como fue un extra, y lo planteamos como algo un poco mas practico que un evento o nota
+//    -Tiene el id para su manejo en el arreglo
+//    -Como fue un extra, y lo planteamos como algo un poco mas practico que un evento o nota
 // estas solo se podra agregar un titulo para su facil visualizacion y un checkbox para marcarla
 //asi como la opcion de borrarla
 export interface List {
   titulo: string;
+  email: string;
   id: number;
   read: boolean;
 }
@@ -45,21 +52,29 @@ export interface List {
   providedIn: 'root'
 })
 export class DataService {
+correo: string;
 //Variable que guardara la posicion del evento o nota a editar, se le hace una pqueña modificacion
 //del -1 por la forma en que se acomodan los items en el arreglo
   aEditar: number=-1;
+
+
   //Se declara el storage que nos ayudara a guardar nuestros arrglos con datos
   private _storage: Storage | null= null;
+
 
   //En las siguientes 3 lineas se declaran los arreglos que usaremos para manejar los
   //datos ingresados
   public messages: Message[] = [ ];
   public eventos: Eventos[] = [ ];
   public list: List[] = [ ];
+
+
 //Inyeccion de las dependecias
-  constructor(private storage: Storage, private alertCtrl: AlertController) {
+  constructor(private storage: Storage, private alertCtrl: AlertController, public loginService: LoginService) {
     this.init();
    }
+
+
 //funcion que al iniciar crea el storage
    async init(){
      const storage= await this.storage.create();
@@ -76,7 +91,6 @@ export class DataService {
   guardarEvento(eventos){
     this.storage.set('eventos', this.eventos);
   }
-
 
   //Los sigueintes 3 metodos se encargan de cargar o actualizar los arreglos a la memoria,
   //justo a la seccion que se indica, que es la que se da en el primer parametro de las funciones
@@ -140,6 +154,7 @@ export class DataService {
       date: this.getCurrentTime(),//Asigna la hora actual
       id: this.messages.length,
       read: false,
+      email: this.correo
     });
     //Guarda la nota en la memoria
     this.guardarNota(this.messages);
@@ -153,6 +168,7 @@ export class DataService {
       descripcion: eventos.descripcion,
       date: eventos.date, //Asgina la fecha y hora seleccionada y ya transformada a string
       id: this.eventos.length,
+      email: this.correo,
       read: false,
     });
     //Guarda el evento en la memoria
@@ -164,6 +180,7 @@ export class DataService {
   public addListInput(list: any) {
     this.list.unshift({
       titulo: list.titulo,
+      email: this.correo,
       id: this.list.length,
       read: false,
     });
@@ -183,6 +200,7 @@ this.guardarLista(this.list);
     this.messages[index]={
       titulo: message.titulo,
       descripcion: message.descripcion,
+      email: this.correo,
       date: this.getCurrentTime(),//Se asgina la hora de la actualizacion
       id: this.messages.length,
       read: false,
@@ -197,6 +215,7 @@ this.guardarLista(this.list);
   public editarEventoInput(eventos: any, index: number) {
     this.eventos[index]={
       titulo: eventos.titulo,
+      email: this.correo,
       descripcion: eventos.descripcion,
       date: eventos.date,
       id: this.eventos.length,

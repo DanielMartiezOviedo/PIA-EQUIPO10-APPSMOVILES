@@ -7,13 +7,14 @@ import { DataService, List } from '../../services/data.service';
 })
 export class InicioPage implements OnInit {
 
-  constructor(private data: DataService) {}
+  constructor(public data: DataService) {}
   //Metodo que refresca la pagina cada 1000 milisegundos
   refresh(ev) {
     setTimeout(() => {
       ev.detail.complete();
     }, 1000);
   }
+
   //Metodo que devuelve el arreglo donde se contienen todas las listas
   getList(): List[] {
     return this.data.getList();

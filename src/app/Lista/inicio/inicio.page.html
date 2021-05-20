@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color= "primary">
-    <ion-title>¡Bienvenido!</ion-title>
+    <ion-title align="center">¡Bienvenido!</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,15 +9,17 @@
 <ion-content class="ion-content">
 <ion-list-header>Lista de cosas pendientes
 <ion-button routerLink="/lista-input">
-  <ion-icon class="ion-icon" name="add" slot="icon-only"></ion-icon>
+  <ion-icon  class="ion-icon" name="add" ></ion-icon>
 </ion-button>
 </ion-list-header>
 <ion-list *ngFor="let message of getList(); let i = index">
-        <ion-item>
-          <ion-label>{{message.titulo}}</ion-label><ion-checkbox></ion-checkbox>
-          <div><ion-button class="ion-icon" (click)="borrarList(i)"><ion-icon name="trash"></ion-icon></ion-button></div>
-        </ion-item>
-</ion-list>
+  <div *ngIf="message.email == data.correo">
+    <ion-item>
+      <ion-label>{{message.titulo}}</ion-label><ion-checkbox></ion-checkbox>
+      </ion-item>
+      <div align="center"><ion-icon (click)="borrarList(i)" name="trash"></ion-icon></div>
+      </div>
+      </ion-list>
 </ion-content>
 
 

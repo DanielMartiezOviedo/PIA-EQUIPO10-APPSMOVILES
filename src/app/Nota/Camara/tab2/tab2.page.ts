@@ -22,7 +22,7 @@ export class Tab2Page implements OnInit {
 //Metodo para invocar una hoja de accion a la hora de seleccionar cierta foto de la galeria
   public async showActionSheet(photo: Photo, position: number) {
   const actionSheet = await this.actionSheetController.create({
-    header: 'Photos',
+    header: '¿Desea eliminar la nota rapida?',
     buttons: [{
       text: 'Borrar',
       role: 'destructive',
@@ -32,7 +32,7 @@ export class Tab2Page implements OnInit {
         //Se escoje la opcion de borrar y se manda a llamar al metodo de eliminar fotografia
       }
     }, {
-      text: 'Cancel',
+      text: 'Cancelar',
       icon: 'close',
       role: 'cancel',
       handler: () => {

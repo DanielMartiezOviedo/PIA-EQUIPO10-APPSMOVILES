@@ -36,10 +36,11 @@ export interface LoginResponseData{// exportamos esta interface para consumir la
 export class LoginService {
   id: any;
 
+//Variables que se usan para la creacion de la bd
+//Asi como almacenar lo que se manda a guardar
   private storage: SQLiteObject;
   userlist = new BehaviorSubject([]);
   private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
-
 
   //Variables que se usan a la hora de mapear el usuario
  private _usuarioLoggeado = true;
@@ -74,7 +75,7 @@ private sqlPorter: SQLitePorter,
     });
   });
 }
-
+//Devuelve el estado de la bd
 dbState() {
   return this.isDbReady.asObservable();
 }
@@ -97,13 +98,16 @@ getFakeData() {
       .catch(error => console.error(error));
   });
 }
+
+
+//Agregamos el usuario a la base de datos
 addUsuario(id, email, contrasena) {
   let data = [id, email, contrasena];
   return this.storage.executeSql('INSERT INTO users (id, email, contrasena) VALUES (?, ?)', data)
   .then(()=>{
     });
 }
-
+//Obtenemos el ususario de la base de datos por medio del id
 getUser(id): Promise<User> {
   return this.storage.executeSql('SELECT * FROM users WHERE id = ?', [id]).then(res => {
     return {
@@ -114,17 +118,14 @@ getUser(id): Promise<User> {
   });
 }
 
-deleteUser(id) {
-
-}
-
 //Metodo para cerrar sesion
  logout(id){
   this._usuario.next(null);
-  return this.storage.executeSql('DELETE FROM users WHERE id = ?', [id])
+  //Se elimina al usuario de la sesion cuando salga de ella
+  /*return this.storage.executeSql('DELETE FROM users WHERE id = ?', [id])
   .then(_ => {
-    this.getUser(0);
-  });
+    this.getUser(id);
+  });*/
 
  }
 

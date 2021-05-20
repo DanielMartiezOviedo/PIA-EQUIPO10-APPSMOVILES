@@ -8,7 +8,7 @@ import { DataService, Message } from '../../services/data.service';
 })
 export class NotasPage implements OnInit {
 
-  constructor(private data: DataService) {}
+  constructor(public data: DataService) {}
   //Metodo que refresca la pagina cada 1000 milisegundos
   refresh(ev) {
     setTimeout(() => {

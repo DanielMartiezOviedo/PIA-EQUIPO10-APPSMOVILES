@@ -105,8 +105,7 @@ public async deletePicture(photo: Photo, position: number) {
   });
 
   // Eliminar archivo de foto del sistema de archivos
-  const filename = photo.filepath
-                      .substr(photo.filepath.lastIndexOf('/') + 1);
+  const filename = photo.filepath.substr(photo.filepath.lastIndexOf('/') + 1);
 
   await Filesystem.deleteFile({
     path: filename,
