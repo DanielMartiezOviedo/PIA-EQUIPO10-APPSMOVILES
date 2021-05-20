@@ -22,7 +22,7 @@
    </ng-container>
  </div>
 
- <ion-button expand="block" [disabled]="dataForm.valid" type="submit" routerLink="/inicio">Ingresar</ion-button>
+ <ion-button expand="block" [disabled]="!dataForm.valid" type="submit" routerLink="/inicio">Ingresar</ion-button>
 </form>
 
 </ion-content>

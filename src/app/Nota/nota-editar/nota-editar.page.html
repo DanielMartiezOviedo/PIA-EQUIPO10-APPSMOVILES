@@ -20,7 +20,7 @@
     <ion-textarea color="secundary" formControlName="descripcion" placeholder="{{message.descripcion}}"></ion-textarea>
   </ion-item>
 
-  <ion-button expand="block" type="submit" routerLink="/notas">Actualizar</ion-button>
+  <ion-button expand="block" [disabled]="!datosForm.valid" type="submit" routerLink="/notas">Actualizar</ion-button>
 
 </form>
  </ion-content>

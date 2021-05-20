@@ -24,7 +24,7 @@
     <ion-textarea color="secundary" formControlName="descripcion" placeholder="{{eventos.descripcion}}"></ion-textarea>
   </ion-item>
 
-  <ion-button expand="block" type="submit" routerLink="/home">Actualizar</ion-button>
+  <ion-button expand="block" [disabled]="!datosEForm.valid" type="submit" routerLink="/home">Actualizar</ion-button>
 
 </form>
  </ion-content>

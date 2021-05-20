@@ -22,7 +22,7 @@
     <ion-label position="floating">Descripcion</ion-label>
     <ion-textarea formControlName="descripcion" placeholder="Ejem. Miercoles se expone el proyecto en clase"></ion-textarea>
   </ion-item>
-  <ion-button expand="block" type="submit" routerLink="/home">Ingresar</ion-button>
+  <ion-button expand="block"  [disabled]="!datosEForm.valid" type="submit" routerLink="/home">Ingresar</ion-button>
 
 </form>
 </ion-content>

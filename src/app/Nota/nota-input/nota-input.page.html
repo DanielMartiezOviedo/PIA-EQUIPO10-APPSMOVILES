@@ -36,7 +36,7 @@
    </ng-container>
  </div>
 
- <ion-button required expand="block" [disabled]="datosForm.valid" type="submit" routerLink="/notas">Ingresar</ion-button>
+ <ion-button required expand="block" [disabled]="!datosForm.valid" type="submit" routerLink="/notas">Ingresar</ion-button>
 </form>
 
 </ion-content>

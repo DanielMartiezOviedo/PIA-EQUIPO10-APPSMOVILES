@@ -35,10 +35,6 @@ export class EventoInputPage implements OnInit {
         Validators.pattern('')
 
       ])),
-      id: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[0-9]*$')
-      ])),
       date: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('')

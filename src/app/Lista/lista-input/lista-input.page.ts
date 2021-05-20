@@ -23,14 +23,6 @@ export class ListaInputPage implements OnInit {
       titulo: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('')
-      ])),
-      descripcion: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('')
-      ])),
-      id: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[0-9]*$')
       ]))
     });
    }

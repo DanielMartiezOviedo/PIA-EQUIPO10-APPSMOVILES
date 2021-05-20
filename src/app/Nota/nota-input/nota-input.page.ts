@@ -28,11 +28,6 @@ export class NotaInputPage implements OnInit {
       descripcion: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('')
-
-      ])),
-      id: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[0-9]*$')
       ]))
     });
    }
