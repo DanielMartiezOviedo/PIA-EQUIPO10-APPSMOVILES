@@ -122,10 +122,10 @@ getUser(id): Promise<User> {
  logout(id){
   this._usuario.next(null);
   //Se elimina al usuario de la sesion cuando salga de ella
-  /*return this.storage.executeSql('DELETE FROM users WHERE id = ?', [id])
+ return this.storage.executeSql('DELETE FROM users WHERE id = ?', [id])
   .then(_ => {
     this.getUser(id);
-  });*/
+  });
 
  }
 

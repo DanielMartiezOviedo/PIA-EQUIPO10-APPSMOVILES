@@ -77,7 +77,7 @@ export class LoginPage implements OnInit {
  authObs.subscribe(response => {
 this.data.correo=email;
 console.log('Variable del correo guardada: '+this.data.correo);
- //this.loginService.addUsuario(0, email, password);
+ this.loginService.addUsuario(0, email, password); //Se manda a guardar a la tabla de sqlite despues de autenticar
  console.log(response);
  this.isLoading = false;
  loadingEl.dismiss();

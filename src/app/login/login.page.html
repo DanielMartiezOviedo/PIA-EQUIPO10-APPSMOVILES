@@ -1,6 +1,6 @@
 <ion-header class="ion-text-center">
   <ion-toolbar color= "primary">
-  <ion-title>{{!isLoginMode ? 'Registro' : 'Inicio'}}</ion-title>
+  <ion-title>{{!isLoginMode ? 'Registro' : 'Iniciar Sesion'}}</ion-title>
   </ion-toolbar>
  </ion-header>
  <ion-content class="ion-padding ion-text-center">
@@ -19,7 +19,7 @@
         </ion-item>
 
         <ion-item>
-          <ion-label position="floating">Contraseña</ion-label>
+          <ion-label position="floating">Password</ion-label>
         <ion-input type= "password" ngModel name= "password" required minlength="6" #passCtrl= "ngModel"></ion-input>
          </ion-item>
         <ion-item *ngIf="!passCtrl.valid && passCtrl.touched" lines= "none">
@@ -35,7 +35,7 @@
 
   <ion-button
   color= "primary"  fill= "clear"  expand="block"  (click)= "onSwitchAuthMode()">
-  {{isLoginMode ? 'Registrarse' : 'Ir a Inicio'}}
+  {{isLoginMode ? 'Registrarse' : 'Iniciar Sesion'}}
   </ion-button>
    <ion-spinner color= "primary" *ngIf= "isLoading"></ion-spinner>
    <ion-button
