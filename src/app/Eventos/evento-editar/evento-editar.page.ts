@@ -16,6 +16,12 @@ export class EventoEditarPage implements OnInit {
   eventos: Eventos;
   //Declaracion del formulario
   datosEForm: FormGroup;
+  mensajesValidacion = {
+    datos: [
+      {type:'required', message: 'Por favor llene el dato completo.'},
+      {type:'pattern', message: 'Por favor use carácteres válidos.'},
+    ]
+  };
   //Creacion del formulario, asi como para cada campo se señala su modelo y que son requeridos
   constructor(private formBuilder: FormBuilder, private data: DataService, private router: Router) {
     this.datosEForm = this.formBuilder.group({

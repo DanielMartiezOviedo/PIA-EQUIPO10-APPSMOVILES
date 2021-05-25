@@ -14,12 +14,27 @@
       <br>
       <ion-input color="secundary" formControlName="titulo" placeholder="{{message.titulo}}"></ion-input>
     </ion-item>
+    <div class="errors">
+      <ng-container *ngFor="let validation of mensajesValidacion.datos">
+        <div *ngIf="datosForm.get('titulo').hasError(validation.type) &&
+        (datosForm.get('titulo').dirty || datosForm.get('titulo').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
   <ion-item>
     <ion-label position="floating">Descripcion</ion-label>
      <br>
     <ion-textarea color="secundary" formControlName="descripcion" placeholder="{{message.descripcion}}"></ion-textarea>
   </ion-item>
-
+  <div class="errors">
+    <ng-container *ngFor="let validation of mensajesValidacion.datos">
+      <div *ngIf="datosForm.get('titulo').hasError(validation.type) &&
+      (datosForm.get('titulo').dirty || datosForm.get('titulo').touched)">
+        {{ validation.message }}
+      </div>
+    </ng-container>
+  </div>
   <ion-button expand="block" [disabled]="!datosForm.valid" type="submit" routerLink="/notas">Actualizar</ion-button>
 
 </form>

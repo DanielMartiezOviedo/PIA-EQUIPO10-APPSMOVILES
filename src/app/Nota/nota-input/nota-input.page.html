@@ -15,10 +15,8 @@
   </ion-item>
  <div class="errors">
    <ng-container *ngFor="let validation of mensajesValidacion.datos">
-     <div *ngIf="
-     datosForm.get('titulo').hasError(validation.type) &&
-     (datosForm.get('titulo').dirty || datosForm.get('titulo').touched)
-     ">
+     <div *ngIf="datosForm.get('titulo').hasError(validation.type) &&
+     (datosForm.get('titulo').dirty || datosForm.get('titulo').touched)">
        {{ validation.message }}
      </div>
    </ng-container>
@@ -38,5 +36,5 @@
 
  <ion-button required expand="block" [disabled]="!datosForm.valid" type="submit" routerLink="/notas">Ingresar</ion-button>
 </form>
-
+ñ
 </ion-content>
