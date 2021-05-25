@@ -14,11 +14,17 @@
 </ion-list-header>
 <ion-list *ngFor="let message of getList(); let i = index">
   <div *ngIf="message.email == data.correo">
+    <ion-item-sliding>
+      <ion-item-options side="start">
+        <ion-item-option color="danger" ><ion-icon class="ion-icon" slot="end" (click)="borrarList(i)" name="trash"></ion-icon></ion-item-option>
+      </ion-item-options>
     <ion-item>
       <ion-label>{{message.titulo}}</ion-label><ion-checkbox></ion-checkbox>
-      </ion-item>
-      <div align="center"><ion-icon (click)="borrarList(i)" name="trash"></ion-icon></div>
       <hr style="height: 1px; border: none; color: aqua; background-color: #4d4d4d;">
+
+
+  </ion-item>
+</ion-item-sliding>
       </div>
       </ion-list>
 </ion-content>

@@ -13,25 +13,32 @@
 
 <ion-content [fullscreen]="true">
   <ion-list *ngFor="let message of getMessages(); let i = index">
+
     <div *ngIf="message.email == data.correo">
-      <div align="center" class="container">
-        <div class="card-container">
-          <div class="header">
-            <a>
-              <img width="100" height="100"  src="https://cefoped.com/inicio/wp-content/uploads/2020/11/Checklist.png" alt="">
-            </a>
-            <h4>{{message.titulo}}</h4>
-            <hr style="height: 1px; border: none; color: aqua; background-color: #4d4d4d;">
+        <ion-item-sliding>
+          <ion-item-options side="start">
+            <ion-item-option color="secondary"><ion-icon class="ion-icon" slot="end" (click)="editarNota(i)" routerLink="/nota-editar" name="create"></ion-icon></ion-item-option>
+            <ion-item-option color="danger" ><ion-icon class="ion-icon" slot="end" (click)="borrarNota(i)" name="trash"></ion-icon></ion-item-option>
+          </ion-item-options>
+          <ion-item>
+            <div align="center" class="container">
+              <div class="card-container">
+                <div class="header">
+                  <a>
+                    <img width="100" height="100"  src="https://cefoped.com/inicio/wp-content/uploads/2020/11/Checklist.png" alt="">
+                  </a>
+                  <h4 align="center">{{message.titulo}}</h4>
+                  <hr align="centercenter" style="height: 1px; border: none; color: aqua; background-color: #4d4d4d;">
+                  </div>
+                  <div class="descripcion">
+                    <p align="center">{{message.descripcion}}</p>
+                    </div>
             </div>
-            <div class="descripcion">
-              <p>{{message.descripcion}}</p>
-              <div class="actions" align="center">
-                <a><ion-icon class="ion-icon" slot="end" (click)="borrarNota(i)" name="trash"></ion-icon></a>
-                <a><ion-icon class="ion-icon" slot="end" (click)="editarNota(i)" routerLink="/nota-editar" name="create"></ion-icon></a>
-           </div>
-          </div>
-      </div>
-      </div>
+            </div>
+          </ion-item>
+        </ion-item-sliding>
+
   </div>
+      <hr align="centercenter" style="height: 4px; border: none; color: aqua; background-color: #212226;">
   </ion-list>
 </ion-content>
